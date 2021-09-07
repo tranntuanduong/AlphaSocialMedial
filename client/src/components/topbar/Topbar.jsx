@@ -2,12 +2,15 @@ import ChatIcon from '@material-ui/icons/Chat';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
+import { Link } from 'react-router-dom';
 import './Topbar.css';
 function Topbar(props) {
     return (
         <div className="topbarContainer">
             <div className="topbarLeft">
-                <span className="logo">AlphaSocial</span>
+                <Link to="/" className="topbarLeftHome">
+                    <span className="logo">AlphaSocial</span>
+                </Link>
             </div>
             <div className="topbarCenter">
                 <div className="searchbar">
@@ -21,7 +24,9 @@ function Topbar(props) {
                     <span className="topbarLink">Timeline</span>
                 </div>
                 <div className="topbarIcons">
-                    <img src="/assets/person/1.jpeg" alt="" className="topbarImg" />
+                    <Link to="/profile">
+                        <img src="/assets/person/1.jpeg" alt="" className="topbarImg" />
+                    </Link>
                     <div className="topbarIconItem">
                         <PersonIcon />
                         <span className="topbarIconBadge">1</span>

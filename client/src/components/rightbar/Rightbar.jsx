@@ -1,9 +1,9 @@
 import './Rightbar.css';
 import { Users } from '../../dummyData';
 import Online from '../online/Online';
+import { PUBLIC_FOLDER } from '../../constant';
 
-function RightBar({ profile }) {
-    console.log(profile);
+function RightBar({ user }) {
     const HomeRightbar = () => {
         return (
             <>
@@ -19,53 +19,83 @@ function RightBar({ profile }) {
                     {Users.map((user) => (
                         <Online key={user.id} user={user} />
                     ))}
+                    {Users.map((user) => (
+                        <Online key={user.id} user={user} />
+                    ))}
                 </ul>
             </>
         );
     };
 
     const ProfileRightbar = () => {
+        console.log(user);
         return (
             <>
                 <h4 className="rightbarTitle">User infomation</h4>
                 <div className="rightbarInfo">
                     <div className="rightbarInfoItem">
                         <span className="rightbarInfoKey">City: </span>
-                        <span className="rightbarInfoValue">New York</span>
+                        <span className="rightbarInfoValue">{user.city}</span>
                     </div>
                     <div className="rightbarInfoItem">
                         <span className="rightbarInfoKey">From: </span>
-                        <span className="rightbarInfoValue">Madrid</span>
+                        <span className="rightbarInfoValue">{user.from}</span>
                     </div>
                     <div className="rightbarInfoItem">
                         <span className="rightbarInfoKey">Relationship: </span>
-                        <span className="rightbarInfoValue">Single</span>
+                        <span className="rightbarInfoValue">
+                            {user.relationship === 1 ? 'Single' : 'Married'}
+                        </span>
                     </div>
                 </div>
                 <h4 className="rightbarTitle">User friend</h4>
                 <div className="rightbarFollowings">
                     <div className="rightbarFollowing">
-                        <img src="./assets/person/5.jpeg" alt="" className="rightbarFollowingImg" />
+                        <img
+                            src={`${PUBLIC_FOLDER}/person/5.jpeg`}
+                            alt=""
+                            className="rightbarFollowingImg"
+                        />
                         <span className="rightbarFollowingName">John Carter</span>
                     </div>
                     <div className="rightbarFollowing">
-                        <img src="./assets/person/2.jpeg" alt="" className="rightbarFollowingImg" />
+                        <img
+                            src={`${PUBLIC_FOLDER}/person/2.jpeg`}
+                            alt=""
+                            className="rightbarFollowingImg"
+                        />
+                        <span className="rightbarFollowingName">Safak Kocaoglu</span>
+                    </div>
+                    <div className="rightbarFollowing">
+                        <img
+                            src={`${PUBLIC_FOLDER}/person/1.jpeg`}
+                            alt=""
+                            className="rightbarFollowingImg"
+                        />
+                        <span className="rightbarFollowingName">Janell Shrum</span>
+                    </div>
+                    <div className="rightbarFollowing">
+                        <img
+                            src={`${PUBLIC_FOLDER}/person/5.jpeg`}
+                            alt=""
+                            className="rightbarFollowingImg"
+                        />
                         <span className="rightbarFollowingName">John Carter</span>
                     </div>
                     <div className="rightbarFollowing">
-                        <img src="./assets/person/1.jpeg" alt="" className="rightbarFollowingImg" />
+                        <img
+                            src={`${PUBLIC_FOLDER}/person/5.jpeg`}
+                            alt=""
+                            className="rightbarFollowingImg"
+                        />
                         <span className="rightbarFollowingName">John Carter</span>
                     </div>
                     <div className="rightbarFollowing">
-                        <img src="./assets/person/5.jpeg" alt="" className="rightbarFollowingImg" />
-                        <span className="rightbarFollowingName">John Carter</span>
-                    </div>
-                    <div className="rightbarFollowing">
-                        <img src="./assets/person/5.jpeg" alt="" className="rightbarFollowingImg" />
-                        <span className="rightbarFollowingName">John Carter</span>
-                    </div>
-                    <div className="rightbarFollowing">
-                        <img src="./assets/person/5.jpeg" alt="" className="rightbarFollowingImg" />
+                        <img
+                            src={`${PUBLIC_FOLDER}/person/5.jpeg`}
+                            alt=""
+                            className="rightbarFollowingImg"
+                        />
                         <span className="rightbarFollowingName">John Carter</span>
                     </div>
                 </div>
@@ -75,9 +105,7 @@ function RightBar({ profile }) {
 
     return (
         <div className="rightbar">
-            <div className="rightbarWrapper">
-                {profile ? <ProfileRightbar /> : <HomeRightbar />}
-            </div>
+            <div className="rightbarWrapper">{user ? <ProfileRightbar /> : <HomeRightbar />}</div>
         </div>
     );
 }

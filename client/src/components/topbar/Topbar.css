@@ -22,6 +22,10 @@
     cursor: pointer;
 }
 
+.topbarLeftHome {
+    text-decoration: none;
+}
+
 .topbarCenter {
     flex: 5;
 }
