@@ -63,6 +63,9 @@
     font-weight: 500;
     cursor: pointer;
     color: #fff;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
 }
 
 .loginForgot {

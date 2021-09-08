@@ -98,7 +98,7 @@ router.put('/:id/unfollow', async (req, res) => {
 });
 
 // get all user ----
-router.get('/', async (req, res) => {
+router.get('/getall', async (req, res) => {
     try {
         const userList = await User.find();
         res.status(200).json(userList);

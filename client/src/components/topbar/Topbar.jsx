@@ -4,7 +4,11 @@ import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
 import './Topbar.css';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import { PUBLIC_FOLDER } from '../../constant';
 function Topbar(props) {
+    const { user } = useContext(AuthContext);
     return (
         <div className="topbarContainer">
             <div className="topbarLeft">
@@ -15,7 +19,10 @@ function Topbar(props) {
             <div className="topbarCenter">
                 <div className="searchbar">
                     <SearchIcon className="searchIcon" />
-                    <input placeholder="Search for friend, post or video" className="searchInput" />
+                    <input
+                        placeholder="Search for friend, post or video"
+                        className="searchInput"
+                    />
                 </div>
             </div>
             <div className="topbarRight">
@@ -24,8 +31,16 @@ function Topbar(props) {
                     <span className="topbarLink">Timeline</span>
                 </div>
                 <div className="topbarIcons">
-                    <Link to="/profile">
-                        <img src="/assets/person/1.jpeg" alt="" className="topbarImg" />
+                    <Link to={`/profile/${user.username}`}>
+                        <img
+                            src={`${PUBLIC_FOLDER}/${
+                                user.profilePicture
+                                    ? user.profilePicture
+                                    : '/person/noAvatar.png'
+                            }`}
+                            alt=""
+                            className="topbarImg"
+                        />
                     </Link>
                     <div className="topbarIconItem">
                         <PersonIcon />

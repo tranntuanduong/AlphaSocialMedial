@@ -6,20 +6,25 @@ import Topbar from '../../components/topbar/Topbar';
 import './Profile.css';
 import axios from 'axios';
 import { PUBLIC_FOLDER } from '../../constant';
+import { useParams } from 'react-router-dom';
 
 function Profile(props) {
     const [user, setUser] = useState({});
+    const params = useParams();
+    console.log(params);
 
     useEffect(() => {
         (async () => {
             try {
-                const res = await axios.get('/users?username=jun');
+                const res = await axios.get(
+                    `/users?username=${params.username}`
+                );
                 setUser(res.data);
             } catch (error) {
                 console.log(error);
             }
         })();
-    }, []);
+    }, [params.username]);
 
     return (
         <>
@@ -29,15 +34,21 @@ function Profile(props) {
                 <div className="profileRight">
                     <div className="profileRightTop">
                         <div className="profileCover">
-                            <img src="/assets/post/3.jpeg" alt="" className="profileCoverImg" />
+                            <img
+                                src={`${PUBLIC_FOLDER}/post/3.jpeg`}
+                                alt=""
+                                className="profileCoverImg"
+                            />
 
-                            {user.profilePicture && (
-                                <img
-                                    src={PUBLIC_FOLDER + user.profilePicture}
-                                    alt=""
-                                    className="profileUserImg"
-                                />
-                            )}
+                            <img
+                                src={`${PUBLIC_FOLDER}/${
+                                    user.profilePicture
+                                        ? user.profilePicture
+                                        : '/person/noAvatar.png'
+                                }`}
+                                alt=""
+                                className="profileUserImg"
+                            />
                         </div>
                         <div className="profileInfo">
                             <h4 className="profileInfoName">{user.username}</h4>
@@ -45,7 +56,7 @@ function Profile(props) {
                         </div>
                     </div>
                     <div className="profileRightBottom">
-                        <Feed username="jun" />
+                        <Feed userParams={params.username} />
                         <RightBar user={user} />
                     </div>
                 </div>
