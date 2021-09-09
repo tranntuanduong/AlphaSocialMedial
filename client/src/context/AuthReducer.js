@@ -8,6 +8,7 @@ const AuthReducer = (state, action) => {
                 isFetching: true,
                 error: false,
             };
+
         case 'LOGIN_SUCCESS': {
             localStorage.setItem(USER, JSON.stringify(action.payload));
             return {
@@ -23,6 +24,34 @@ const AuthReducer = (state, action) => {
                 isFetching: false,
                 error: action.payload,
             };
+
+        case 'FOLLOW': {
+            const user = {
+                ...state.user,
+                followings: [...state.user.followings, action.payload],
+            };
+            localStorage.setItem(USER, JSON.stringify(user));
+            return {
+                ...state,
+                user: user,
+            };
+        }
+
+        case 'UNFOLLOW': {
+            const user = {
+                ...state.user,
+                followings: state.user.followings.filter(
+                    (following) => following !== action.payload
+                ),
+            };
+
+            localStorage.setItem(USER, JSON.stringify(user));
+            return {
+                ...state,
+                user: user,
+            };
+        }
+
         default:
             return state;
     }

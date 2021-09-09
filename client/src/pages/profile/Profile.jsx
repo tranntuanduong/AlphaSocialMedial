@@ -11,7 +11,6 @@ import { useParams } from 'react-router-dom';
 function Profile(props) {
     const [user, setUser] = useState({});
     const params = useParams();
-    console.log(params);
 
     useEffect(() => {
         (async () => {
