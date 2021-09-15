@@ -46,10 +46,10 @@ function Topbar(props) {
                         <PersonIcon />
                         <span className="topbarIconBadge">1</span>
                     </div>
-                    <div className="topbarIconItem">
+                    <Link to="/messenger" className="topbarIconItem">
                         <ChatIcon style={{ fontSize: '20px' }} />
                         <span className="topbarIconBadge">2</span>
-                    </div>
+                    </Link>
                     <div className="topbarIconItem">
                         <NotificationsIcon />
                         <span className="topbarIconBadge">7</span>

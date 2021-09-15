@@ -6,6 +6,7 @@ import { useRef, useState } from 'react';
 import { PUBLIC_FOLDER } from '../../constant';
 import './Share.css';
 import axios from 'axios';
+import CloseIcon from '@material-ui/icons/Close';
 
 function Share({ user }) {
     const desc = useRef();
@@ -66,9 +67,23 @@ function Share({ user }) {
                         ref={desc}
                     />
                 </div>
+
                 <hr className="shareHr" />
-                <div className="shareBottom">
-                    <form className="shareOptions" onSubmit={submitHandler}>
+                {file && (
+                    <div className="shareImgContainer">
+                        <img
+                            src={URL.createObjectURL(file)}
+                            alt=""
+                            className="shareImg"
+                        />
+                        <CloseIcon
+                            className="shareCancleImg"
+                            onClick={() => setFile(null)}
+                        />
+                    </div>
+                )}
+                <form className="shareBottom" onSubmit={submitHandler}>
+                    <div className="shareOptions">
                         <label htmlFor="file" className="shareOption">
                             <PermMediaIcon
                                 htmlColor="tomato"
@@ -103,8 +118,8 @@ function Share({ user }) {
                         <button className="shareButton" type="submit">
                             Share
                         </button>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     );
